@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace _2_collectionspractice
 {
@@ -14,7 +15,7 @@ namespace _2_collectionspractice
 				Console.WriteLine(int1[x]);
 			}
 			// create a array of the names time,  martin, nikki sara
-			string[] arrstr = {"Tim", "martin", "nikki", "sara"};
+			string[] arrstr = {"Tim", "martin", "nikki", "sara", "chuck", "bob", "mich", "john"};
 			foreach(string str in arrstr ){
 				Console.WriteLine(str);
 			}
@@ -31,6 +32,45 @@ namespace _2_collectionspractice
 				arrBool[i] = val;
 				Console.WriteLine(arrBool[i] + "-- " + i);
 			}
+
+			// just print 
+			userInfo(arrstr);
+			castingTest();
+
         }
+
+		public static void userInfo(string[] names){
+			List<string> flavors = new List<string> {"Vanilla","Choco", "Strawberrry", "Cream", "Blueberry", "rocky road"};
+			Dictionary<string, string> profile = new Dictionary<string, string>{};
+			Random rnd = new Random();
+			foreach (var name in names){
+				profile.Add(name, flavors[rnd.Next(0, flavors.Count)]);
+			}
+
+			foreach(var person in profile){
+				Console.WriteLine(person.Key + "--" + person.Value);
+			}
+
+		}
+
+		public static void castingTest(){
+			// testing the ability to do safe casting
+			// create empty list, add values, loop through list (use type inference), add all values that are int
+			List<object> lst = new List<object>();
+			int intSum = 0;
+			lst.Add(7);
+			lst.Add(28);
+			lst.Add(-1);
+			lst.Add(true);
+			lst.Add("chair");
+
+			for (int i=0; i < lst.Count; i++){
+				Console.WriteLine(lst);
+				if (lst[i] is int){
+					intSum = intSum + (int)lst[i];
+				}
+			}
+			Console.WriteLine(intSum + "-- Sum of the ints");
+		}
     }
 }
